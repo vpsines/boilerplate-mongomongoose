@@ -1,11 +1,28 @@
 require('dotenv').config();
 mongoose=require('mongoose');
-
+let validator = require('validator');
 let mongoUri = process.env.MONGO_URI;
 
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let Person;
+let personSchema = new mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  },
+  age:{
+    type: Number,
+    validate: (value)=>{
+      return validator.isNumber();
+    }
+  },
+  favoriteFoods:{
+    type: [String],
+    length: 5
+  }
+})
+
+let Person = mongoose.model('Person',personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
