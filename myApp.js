@@ -7,25 +7,28 @@ let mongoUri = process.env.MONGO_URI;
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let personSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
-    validate: (value) => {
-      return validator.isNumber();
-    },
-  },
-  favoriteFoods: {
-    type: [String],
-    length: 5,
-  },
+  name: String,
+  age: Number,
+  favoriteFoods: [String]
+  // name: {
+  //   type: String,
+  //   required: true,
+  // },
+  // age: {
+  //   type: Number,
+  //   validate: (value) => {
+  //     return validator.isNumber();
+  //   },
+  // },
+  // favoriteFoods: {
+  //   type: [String],
+  //   length: 5,
+  // },
 });
 
-let Person = mongoose.model("Person", personSchema);
+var Person = mongoose.model('Person', personSchema);
 
-const createAndSavePerson = (done) => {
+var createAndSavePerson = function(done)  {
   var p = new Person({
     name: "Vyshnav",
     age: 23,
