@@ -53,8 +53,13 @@ const createManyPeople = (arrayOfPeople, done) => {
   });
 };
 
+var personName = "Vsyhanv";
+
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({"name":personName},function(err,data){
+    if(err) return console.error(err);
+    done(null,data);
+  });
 };
 
 const findOneByFood = (food, done) => {
