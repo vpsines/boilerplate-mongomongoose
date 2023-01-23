@@ -41,11 +41,12 @@ var createAndSavePerson = function(done)  {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  mongoose.Model.create(arrayOfPeople).save(function(err,data){
+  var l = mongoose.Model.create(arrayOfPeople);
+
+  l.save(function(err,data){
     if (err) return console.error(err);
     done(null, data);
   });
-
 };
 
 const findPeopleByName = (personName, done) => {
