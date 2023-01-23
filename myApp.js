@@ -40,13 +40,13 @@ var createAndSavePerson = function (done) {
   });
 };
 
+var arrayOfPeople = [
+  { name: "Vyshnav", age: 23, favoriteFoods: ["Biriyani", "Alfam"] },
+  { name: "Sunny", age: 21, favoriteFoods: ["Biriyani"] },
+  { name: "Usopp", age: 25, favoriteFoods: [ "Alfam"] },
+];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople = [
-    { name: "Vyshnav", age: 23, favoriteFoods: ["Biriyani", "Alfam"] },
-    { name: "Sunny", age: 21, favoriteFoods: ["Biriyani"] },
-    { name: "Usopp", age: 25, favoriteFoods: [ "Alfam"] },
-  ];
-  
   Person.create(arrayOfPeople,function (err, data) {
     if (err) return console.error(err);
     done(null, data);
