@@ -9,7 +9,7 @@ mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 let personSchema = new mongoose.Schema({
   name: String,
   age: Number,
-  favoriteFoods: [String]
+  favoriteFoods: [String],
   // name: {
   //   type: String,
   //   required: true,
@@ -26,9 +26,9 @@ let personSchema = new mongoose.Schema({
   // },
 });
 
-var Person = mongoose.model('Person', personSchema);
+var Person = mongoose.model("Person", personSchema);
 
-var createAndSavePerson = function(done)  {
+var createAndSavePerson = function (done) {
   var p = new Person({
     name: "Vyshnav",
     age: 23,
@@ -41,9 +41,13 @@ var createAndSavePerson = function(done)  {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  var l = mongoose.Model.create(arrayOfPeople);
-
-  l.save(function(err,data){
+  arrayOfPeople = [
+    { name: "Vyshnav", age: 23, favoriteFoods: ["Biriyani", "Alfam"] },
+    { name: "Sunny", age: 21, favoriteFoods: ["Biriyani"] },
+    { name: "Usopp", age: 25, favoriteFoods: [ "Alfam"] },
+  ];
+  
+  Person.create(arrayOfPeople,function (err, data) {
     if (err) return console.error(err);
     done(null, data);
   });
